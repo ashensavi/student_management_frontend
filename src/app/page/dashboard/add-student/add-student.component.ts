@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +11,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-student.component.css'
 })
 export class AddStudentComponent {
+
+  public student :any={
+    name: "null",
+    address: "null",
+    gpa: "null"
+  }
+
+  constructor(private http: HttpClient){
+      
+  }
+
+  addStudent(){
+    this.http.get("http://localhost:8080/student/add-student", this.student).subscribe(data=>{
+      console.log(data)
+
+    })
+  }
+
 
   public username : string="saman";
 
